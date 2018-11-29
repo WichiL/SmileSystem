@@ -408,15 +408,8 @@
                 .on('click', function(){ 
                   $('#smartwizard').smartWizard("reset");
                   $('#myForm').find("input, textarea").val("");
-                }),
-      $('<button></button>').text('Cancelar')
-              .addClass('btn btn-danger')
-              .on('click', function(){
-              if(confirm("¿De verdad quieres cancelar el registro?")){
-               location.href ="?c=inicio";
-              }
-              })
-                      ]
+                })
+        ]
             }, 
           anchorSettings: {
             markDoneStep: true, // add done css
