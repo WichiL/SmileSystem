@@ -87,7 +87,7 @@ legend{
                 <!--/SECCION PARA DATOS GENERALES DEL PACIENTE-->
                 <div id="general"> 
                   <div class="user-profile-content">
-                    <input type="hidden" name="idPaciente"  value="<?php echo $paciente->idPaciente != null ? $paciente->idPaciente : 0;  ?>"/>
+                    <input type="hidden" name="idPaciente" value="<?php echo $paciente->idPaciente != null ? $paciente->idPaciente : 0;  ?>"/>
                     <div id="form-step-0" role="form" data-toggle="validator">
                       <div class="row">
                         <h3 class="h3titulo">Datos Generales</h3>                        
@@ -132,7 +132,7 @@ legend{
                                 Seleccione...
                               </option>
                               <?php } if($paciente->idPaciente!=null){ ?>
-                              <option value="<?php echo $paciente->idPaciente?>">
+                              <option value="<?php echo $paciente->sexo?>">
                                 <?php echo $paciente->sexo; ?>
                               </option>
                               <?php } ?>
@@ -233,7 +233,7 @@ legend{
                                 Seleccione...
                               </option>
                               <?php } if($paciente->idPaciente!=null){ ?>
-                              <option value="<?php echo $paciente->idPaciente?>">
+                              <option value="<?php echo $paciente->sexo?>">
                                 <?php echo $paciente->estCivil; ?>
                               </option>
                               <?php } ?>
@@ -268,15 +268,24 @@ legend{
                           </div>
                         </div>
                       </div>
+                      <br><br>
                     </div><!--/form step 0-->
                   </div> <!--/user profile content-->
                 </div> <!--/general-->
 
                 <!--/SECCION PARA HISTORIAL CLINICO DEL PACIENTE-->
                 <div id="hisCli" class="">
-                  <div class="user-profile-content">   
+                  <div class="user-profile-content">  
+                    <input type="hidden" name="idClinico" value="<?php echo $histCli->idClinico != null ? $histCli->idClinico : 0;  ?>"/>
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+                        <label for="nombre2" class="control-label"><strog class="theme_color">Nombre del Paciente</strog></label>
+                        <input name="nombre2" id="nombre2" type="text" class="form-control disabled"  value="<?php echo $paciente->nombre;?>" placeholder="PACIENTE QUE SE ESTA REGISTRANDO"/>
+                      </div>      
+                    </div><br><br>               
                     <div id="form-step-1" role="form" data-toggle="validator">
-                      <h3 class="h3titulo">Historial Clinico</h3>  
+                      <h3 class="h3titulo">Historial Clinico</h3>                      
+                      <div></div> 
                       <div class="row" style="border: 1px solid gray; border-radius: 10px 10px 10px 10px; padding-top: 10px;" >
                         <div class="col-4 col-sm-4"> <!--EXAMEN DE TEJIDOS--> 
                           <fieldset>
@@ -284,32 +293,33 @@ legend{
                             <div class="row">
                               <div class="col-md-6 f">
                                 <p><strong>Duros</strong></p>
-                                <p><input type="checkbox">Esmalte</p>
-                                <p><input type="checkbox">Detina</p>
+                                <p><input name="esmalte" type="checkbox" <?php if($histCli->esmalte=="1"){ ?> checked <?php } ?>>Esmalte</p>
+                                <p><input name="dentina" type="checkbox" <?php if($histCli->dentina=="1"){ ?> checked <?php } ?>>Dentina</p>
                               </div>
+    
                               <div class="col-md-5 f">
                                 <p><strong>Rx</strong></p>
-                                <p><input type="checkbox">Raíz</p>
-                                <p><input type="checkbox">Huesos</p>
+                                <p><input name="raiz" type="checkbox" <?php if($histCli->raiz=="1"){ ?> checked <?php } ?>>Raíz</p>
+                                <p><input name="huesos" type="checkbox" <?php if($histCli->huesos=="1"){ ?> checked <?php } ?>>Huesos</p>
                               </div>
                             </div><br><br>
                             <div class="row">
                               <div class="col-md-6 f">
                                 <p><strong>Blandos</strong> </p>
-                                <p><input type="checkbox">Encía</p>
-                                <p><input type="checkbox">Enserción Epitelial</p>
-                                <p><input type="checkbox">Lengua</p>
-                                <p><input type="checkbox">Pulpa (Alteraciones)</p>
-                                <p><input type="checkbox">Velo del Paladar</p>
-                                <p><input type="checkbox">Carrillos</p>
+                                <p><input name="encia" type="checkbox" <?php if($histCli->encia=="1"){ ?> checked <?php } ?>>Encia</p>
+                                <p><input name="inEpil" type="checkbox" <?php if($histCli->inEpil=="1"){ ?> checked <?php } ?>>Inserción Epitelial</p>
+                                <p><input name="lengua" type="checkbox" <?php if($histCli->lengua=="1"){ ?> checked <?php } ?>>Lengua</p>
+                                <p><input name="pulpo" type="checkbox" <?php if($histCli->pulpo=="1"){ ?> checked <?php } ?>>Pulpa (Alteraciones)</p>
+                                <p><input name="velPal" type="checkbox" <?php if($histCli->velPal=="1"){ ?> checked <?php } ?>>Carillos</p>
+                                <p><input name="carrillo" type="checkbox" <?php if($histCli->carrillo=="1"){ ?> checked <?php } ?>>Encia</p>
                               </div>
                               <div class="col-md-6 f">
                                 <p><strong>Oclusión</strong></p>
-                                <p><input type="checkbox">Sobre Mordida H</p>
-                                <p><input type="checkbox">Sobre Mordida V</p>
-                                <p><input type="checkbox">Mordida Abierta</p>
-                                <p><input type="checkbox">DEsgasteBruxismo</p>
-                                <p><input type="checkbox">Anoclusión</p><br><br><br><br>
+                                <p><input name="soMordidaH" type="checkbox" <?php if($histCli->soMordidaH=="1"){ ?> checked <?php } ?>>Sobre Mordida H</p>
+                                <p><input name="soMordidaV" type="checkbox" <?php if($histCli->soMordidaV=="1"){ ?> checked <?php } ?>>Sobre Mordida V</p>
+                                <p><input name="morAbierta" type="checkbox" <?php if($histCli->morAbierta=="1"){ ?> checked <?php } ?>>Mordida Abierta</p>
+                                <p><input name="desBruxismo" type="checkbox" <?php if($histCli->desBruxismo=="1"){ ?> checked <?php } ?>>Desgaste Bruxismo</p>
+                                <p><input name="anoclusion" type="checkbox" <?php if($histCli->anoclusion=="1"){ ?> checked <?php } ?>>Anoclusión</p>
                               </div>
                             </div>
                           </fieldset>
@@ -325,8 +335,8 @@ legend{
                                     <p><strong>Cara</strong></p>
                                   </div>
                                   <div class="col-md-6 f">
-                                    <p><input type="checkbox">Simétrica</p>
-                                    <p><input type="checkbox">Asimétrica</p>
+                                    <p><input name="simetrica" type="checkbox" <?php if($histCli->simetrica=="1"){ ?> checked <?php } ?>>Simétrica</p>
+                                    <p><input name="asimetrica" type="checkbox" <?php if($histCli->asimetrica=="1"){ ?> checked <?php } ?>>Asimétrica</p>
                                   </div>
                                 </div>
                                 <div class="row">
@@ -334,9 +344,9 @@ legend{
                                     <p><strong>Craneo</strong></p>
                                   </div>
                                   <div class="col-md-6 f">
-                                    <p><input type="checkbox">Braquicéfalo</p>
-                                    <p><input type="checkbox">Mesocéfalo</p>
-                                    <p><input type="checkbox">Dolicocéfalo</p>
+                                    <p><input name="braquicefalo" type="checkbox" <?php if($histCli->braquicefalo=="1"){ ?> checked <?php } ?>>Braquicéfalo</p>
+                                    <p><input name="mesocefalo" type="checkbox" <?php if($histCli->mesocefalo=="1"){ ?> checked <?php } ?>>Mesocéfalo</p>
+                                    <p><input name="dolicefalo" type="checkbox" <?php if($histCli->dolicefalo=="1"){ ?> checked <?php } ?>>Dolicefalo</p>
                                   </div>
                                 </div>
                                 <div class="row">
@@ -344,9 +354,9 @@ legend{
                                     <p><strong>Perfil</strong></p>
                                   </div>
                                   <div class="col-md-6 f">
-                                    <p><input type="checkbox">Recto</p>
-                                    <p><input type="checkbox">Concavo</p>
-                                    <p><input type="checkbox">Convexo</p>
+                                    <p><input name="recto" type="checkbox" <?php if($histCli->recto=="1"){ ?> checked <?php } ?>>Recto</p>
+                                    <p><input name="concavo" type="checkbox" <?php if($histCli->concavo=="1"){ ?> checked <?php } ?>>Concavo</p>
+                                    <p><input name="convexo" type="checkbox" <?php if($histCli->convexo=="1"){ ?> checked <?php } ?>>Convexo</p>
                                   </div>
                                 </div>
                               </fieldset>
@@ -355,15 +365,15 @@ legend{
                               <fieldset>
                                 <legend>Antecedentes</legend>
                                 <div class="row">
-                                  <p><input type="checkbox">Sarampion</p>
-                                  <p><input type="checkbox">Viruela</p>
-                                  <p><input type="checkbox">Parotiditis</p>
-                                  <p><input type="checkbox">Diabetes</p>
-                                  <p><input type="checkbox">Hipertensión</p>
-                                  <p><input type="checkbox">Tiroides</p>
-                                  <p><input type="checkbox">Hipotiroidismo</p>
-                                  <p><input type="checkbox">Problemas de Coagulación</p>
-                                  <p><input type="checkbox">Alergias: <input type="text" placeholder="¿Cuales...?" class="input" style="width: 80px;"></p><br><br>
+                                  <p><input name="sarampion" type="checkbox" <?php if($histCli->sarampion=="1"){ ?> checked <?php } ?>>Sarampión</p>
+                                  <p><input name="viruela" type="checkbox" <?php if($histCli->viruela=="1"){ ?> checked <?php } ?>>Viruela</p>
+                                  <p><input name="parotidis" type="checkbox" <?php if($histCli->parotidis=="1"){ ?> checked <?php } ?>>Parotiditis</p>
+                                  <p><input name="diabetes" type="checkbox" <?php if($histCli->diabetes=="1"){ ?> checked <?php } ?>>Diabetes</p>
+                                  <p><input name="hipertension" type="checkbox" <?php if($histCli->hipertension=="1"){ ?> checked <?php } ?>>Hipertensión</p>
+                                  <p><input name="tiroides" type="checkbox" <?php if($histCli->tiroides=="1"){ ?> checked <?php } ?>>Tiroides</p>
+                                  <p><input name="hipotiroidismo" type="checkbox" <?php if($histCli->hipotiroidismo=="1"){ ?> checked <?php } ?>>Hipotiroidismo</p>
+                                  <p><input name="proCoagulacion" type="checkbox" <?php if($histCli->proCoagulacion=="1"){ ?> checked <?php } ?>>Problemas de Coagulación</p>
+                                  <p><input name="alergias" type="checkbox" <?php if($histCli->alergias=="1"){ ?> checked <?php } ?>>Alergias <input name="descAlergias" value="<?php echo $histCli->descAlergias;?>" type="text" class="form-control" placeholder="¿Cuales...?" style="width: 80px;"></p><br><br>
                                 </div>
                               </fieldset>
                             </div>
@@ -375,12 +385,12 @@ legend{
                             <legend>Higiene Bucal</legend>
                             <div class="row">
                               <div class="col-md-6 f">
-                                <p><input type="checkbox">Buena</p>
-                                <p><input type="checkbox">Mala</p>
+                                <p><input name="buena" type="checkbox" <?php if($histCli->buena=="1"){ ?> checked <?php } ?>>Buena</p>
+                                <p><input name="mala" type="checkbox" <?php if($histCli->mala=="1"){ ?> checked <?php } ?>>Mala</p>
                               </div>
                               <div class="col-md-6 f">
-                                <p><input type="checkbox">Bebe Alcohol</p>
-                                <p><input type="checkbox">Fuma</p>
+                                <p><input name="tomAlcohol" type="checkbox" <?php if($histCli->tomAlcohol=="1"){ ?> checked <?php } ?>>Bebe Alcohol</p>
+                                <p><input name="fuma" type="checkbox" <?php if($histCli->fuma=="1"){ ?> checked <?php } ?>>Fuma</p>
                               </div>
                             </div>
                           </fieldset>
@@ -388,15 +398,15 @@ legend{
                             <legend>Tipo de Consulta</legend>
                             <div class="row">
                               <div class="col-md-6 f">
-                                <p><input type="checkbox">Emergencia</p>
-                                <p><input type="checkbox">Revisión</p>
-                                <p><input type="checkbox">Limpieza</p>
-                                <p><input type="checkbox">Caries</p>
+                                <p><input name="emergencia" type="checkbox" <?php if($histCli->emergencia=="1"){ ?> checked <?php } ?>>Emergencia</p>
+                                <p><input name="revisión" type="checkbox" <?php if($histCli->revision=="1"){ ?> checked <?php } ?>>Revisión</p>
+                                <p><input name="limpieza" type="checkbox" <?php if($histCli->limpieza=="1"){ ?> checked <?php } ?>>Limpieza</p>
+                                <p><input name="canes" type="checkbox" <?php if($histCli->canes=="1"){ ?> checked <?php } ?>>Caries</p>
                               </div>
                               <div class="col-md-6 f">
-                                <p><input type="checkbox">Puente</p>
-                                <p><input type="checkbox">Extracción</p>
-                                <p><input type="checkbox">Prostodoncia</p>
+                                <p><input name="puente" type="checkbox" <?php if($histCli->puente=="1"){ ?> checked <?php } ?>>Puente</p>
+                                <p><input name="extraccion" type="checkbox" <?php if($histCli->extraccion=="1"){ ?> checked <?php } ?>>Extracción</p>
+                                <p><input name="prostodoncia" type="checkbox" <?php if($histCli->prostodoncia=="1"){ ?> checked <?php } ?>>Prostodoncia</p>
                               </div>
                             </div>
                           </fieldset>
@@ -404,49 +414,185 @@ legend{
                             <legend>Aparatos y Sistemas</legend>
                             <div class="row">
                               <div class="col-md-12 f">
-                                <p><input type="checkbox">Aparato Respiratorio</p>
-                                <p><input type="checkbox">Aparato Cardiovascular</p>
-                                <p><input type="checkbox">Aparato Digestivo</p>
-                                <p><input type="checkbox">Sistema Nervioso</p>
-                                <p><input type="checkbox">Aparato Genito-Urinario</p>
-                                <p><input type="checkbox">Ciclo Menstrual <input type="text" placeholder="Ciclo" class="input" style="width: 64px;"></p>
-                                <p><input type="checkbox">Embarazo: <input type="text" placeholder="Meses" class="input" style="width: 64px;"></p>
+                                <p><input name="apRespiratorio" type="checkbox" <?php if($histCli->apRespiratorio=="1"){ ?> checked <?php } ?>>Aparato Respiratorio</p>
+                                <p><input name="apCardiovascular" type="checkbox" <?php if($histCli->apCardiovascular=="1"){ ?> checked <?php } ?>>Aparato Cardiovascular</p>
+                                <p><input name="apDigestivo" type="checkbox" <?php if($histCli->apDigestivo=="1"){ ?> checked <?php } ?>>Aparato Digestivo</p>
+                                <p><input name="sisNervioso" type="checkbox" <?php if($histCli->sisNervioso=="1"){ ?> checked <?php } ?>>Sistema Nervioso</p>
+                                <p><input name="apUrinario" type="checkbox" <?php if($histCli->apUrinario=="1"){ ?> checked <?php } ?>>Aparato Genito-Urinario</p>
+                                <p><input name="cicMestrual" type="checkbox" <?php if($histCli->cicMestrual=="1"){ ?> checked <?php } ?>>Ciclo Menstrual <input name="infCicMes" value="<?php echo $histCli->infCicMes;?>" type="text" class="form-control" placeholder="..." style="width: 80px;"></p> 
+                                <p><input name="embarazo" type="checkbox" <?php if($histCli->embarazo=="1"){ ?> checked <?php } ?>>Embarazo <input name="meses" value="<?php echo $histCli->meses;?>" type="text" class="form-control" placeholder="Meses" style="width: 80px;"></p>                                                   
                               </div>
                             </div>
                           </fieldset>
                         </div>                        
                       </div> 
-                      <div class="col-md-2"></div> <!--HECHIZO-->
-                      <div class="col-md-8 f"><!--PREGUNTAS--> 
+                      <div class="col-md-3"></div> <!--HECHIZO-->
+                      <div class="col-md-5 f"><!--PREGUNTAS--> 
                         <fieldset class="preguntas">
-                          <p>
-                            ¿Alguna vez has recibido atención odontológica? 
-                            <strong class="pull-right">Si&nbsp;<input type="radio">&nbsp;&nbsp;No&nbsp;<input type="radio"></strong>
-                          </p>
-                          <p>
+                          <p class="center">
+                            ¿Alguna vez has recibido atención odontológica?
+                            <div class="row">
+                              <div class="radio">
+                                <strong> <input class="input d" type="radio" name="prg1"  value="1" <?php if($histCli->prg1=="1"){ ?> checked <?php } ?>>Si </strong>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <strong><input class="input d" type="radio" name="prg1" value="2" <?php if($histCli->prg1=="2" || $histCli->idPaciente==null ){ ?> checked <?php } ?>>No </strong>
+                                </label>
+                              </div>
+                            </div>
+                          </p><br>
+                          <p class="center">
                             ¿Con que frecuencia se cepilla los dientes? 
-                            <strong class="pull-right"><input type="text" class="input d"></strong>
-                          </p>
-                          <p>
+                            <strong>
+                              <div class="center">
+                                <input name="prg2" value="<?php echo $histCli->prg2;?>" type="text" class="form-control" placeholder="Cuantas veces a al dia" style="width: 300px;">
+                              </div>
+                            </strong>
+                          </p><br>
+                          
+                          <p class="center">
                             ¿Le han administrado anestecia local?
-                            <strong class="pull-right">Si&nbsp;<input type="radio">&nbsp;&nbsp;No&nbsp;<input type="radio"></strong>
-                          </p>
-                          <p>
-                            ¿Ha sido sometido a algun procedimiento quirúrgico <br> en alguna época de su vida? 
-                            <strong class="pull-right">Si&nbsp;<input type="radio">&nbsp;&nbsp;No&nbsp;<input type="radio"></strong>
+                             <div class="radio">
+                              <strong> <input class="input d" type="radio" name="prg3"  value="1" <?php if($histCli->prg3=="1"){ ?> checked <?php } ?>>Si </strong>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                 <strong><input class="input d" type="radio" name="prg3" value="2" <?php if($histCli->prg3=="2" || $histCli->idPaciente==null ){ ?> checked <?php } ?>>No </strong>
+                              </label>
+                            </div>
+                          </p><br>
+
+                          <p class="center">
+                            ¿Ha sido sometido a algun procedimiento quirúrgico <br> en alguna época de su vida?
+                             <div class="radio">
+                              <strong class=""> <input class="input d" type="radio" name="prg4"  value="1" <?php if($histCli->prg4=="1"){ ?> checked <?php } ?>>Si </strong>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                 <strong><input class="input d" type="radio" name="prg4" value="2" <?php if($histCli->prg4=="2" || $histCli->idPaciente==null ){ ?> checked <?php } ?>>No </strong>
+                              </label>
+                            </div>  
+                            <p><input name="infPrg3" value="<?php echo $histCli->infPrg3;?>" type="text" class="form-control" placeholder="¿Cual?" style="width: 300px;"></p>                          
                           </p>
                         </fieldset>
-                      </div>              
+                      </div>    
+                      <br><br>          
                     </div><!--/form step 1-->
                   </div> <!--/user profile content-->
                 </div><!--/hisCli-->
                 
                 <!--/SECCION PARA ATM DEL PACIENTE-->
                 <div id="atm" class="">
-                 <div class="user-profile-content">   
+                 <div class="user-profile-content"> 
+                    <input type="hidden" name="idAtm" value="<?php echo $atm->idAtm != null ? $atm->idAtm : 0;  ?>"/> 
                     <div id="form-step-2" role="form" data-toggle="validator">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+                        <label for="nombre3" class="control-label"><strog class="theme_color">Nombre del Paciente</strog></label>
+                        <input name="nombre3" id="nombre3" type="text" class="form-control disabled"  value="<?php echo $paciente->nombre;?>" placeholder="PACIENTE QUE SE ESTA REGISTRANDO" />
+                      </div>      
+                    </div><br><br>                        
                       <h3 class="h3titulo">ATM</h3>                 
-
+                      <br><br>
+                      <div class="col-md-6">                    
+                        <div class="form-row">
+                          <div class="col-md-4 mb-3">
+                            <label for="linMedia" class="control-label">Linea Media</label>
+                            <input name="linMedia" maxlength="60" id="linMedia" type="text" autofocus class="form-control" value="<?php echo $atm->linMedia;?>" />
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="habitos" class="control-label">Habitos</label>
+                            <input name="habitos" maxlength="60" id="habitos" type="text" autofocus class="form-control" value="<?php echo $atm->habitos;?>" />
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="bruxismo" class="control-label">Bruxismo</label>
+                            <input name="bruxismo" maxlength="60" id="bruxismo" type="text" autofocus class="form-control" value="<?php echo $atm->bruxismo;?>" />
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="infChasquido" class="control-label">Chasquidos</label>
+                            <p><input name="chaArriba" type="checkbox" <?php if($atm->chaArriba=="1"){ ?> checked <?php } ?>>Derecho</p>
+                            <p><input name="chaAbajo" type="checkbox" <?php if($atm->chaAbajo=="1"){ ?> checked <?php } ?>>Izquierdo</p>
+                            <input name="infChasquido" maxlength="60" id="infChasquido" type="text" autofocus class="form-control" value="<?php echo $atm->infChasquido;?>" />
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="crepitacion" class="control-label">Crepitación</label>
+                            <input name="crepitacion" maxlength="60" id="crepitacion" type="text" autofocus class="form-control" value="<?php echo $atm->crepitacion;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="infDolor" class="control-label">Dolor</label>
+                            <p><input name="dolDerecha" type="checkbox" <?php if($atm->dolDerecha=="1"){ ?> checked <?php } ?>>Abrir</p>
+                            <p><input name="dolIzquierda" type="checkbox" <?php if($atm->dolIzquierda=="1"){ ?> checked <?php } ?>>Cerrar</p>
+                            <input name="infDolor" maxlength="60" id="infDolor" type="text" autofocus class="form-control" value="<?php echo $atm->infDolor;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">                    
+                        <div class="form-row">
+                          <div class="col-md-4 mb-3">
+                            <label for="maxAbertura" class="control-label">Max. Abertura(mm)</label>
+                            <input onkeypress="return soloNumeros(event);" name="maxAbertura" maxlength="10" id="maxAbertura" type="text" autofocus class="form-control" value="<?php echo $atm->maxAbertura;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="izquierdo" class="control-label">Izquierdo(mm)</label>
+                            <input onkeypress="return soloNumeros(event);" name="izquierdo" maxlength="10" id="izquierdo" type="text" autofocus class="form-control" value="<?php echo $atm->izquierdo;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="derecho" class="control-label">Derecho(mm)</label>
+                            <input onkeypress="return soloNumeros(event);" name="derecho" maxlength="10" id="derecho" type="text" autofocus class="form-control" value="<?php echo $atm->derecho;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="potrusion" class="control-label">Potrusión(mm)</label>
+                            <input onkeypress="return soloNumeros(event);" name="potrusion" maxlength="10" id="potrusion" type="text" autofocus class="form-control" value="<?php echo $atm->potrusion;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="regresion" class="control-label">Regresión(mm)</label>
+                            <input onkeypress="return soloNumeros(event);" name="regresion" maxlength="10" id="regresion" type="text" autofocus class="form-control" value="<?php echo $atm->regresion;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="peso" class="control-label">Peso(Kg)</label>
+                            <input onkeypress="return soloNumeros(event);" name="peso" maxlength="10" id="peso" type="text" autofocus class="form-control" value="<?php echo $atm->peso;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="talla" class="control-label">Talla(Mts)</label>
+                            <input onkeypress="return soloNumeros(event);" name="talla" maxlength="10" id="talla" type="text" autofocus class="form-control" value="<?php echo $atm->talla;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="temp" class="control-label">Temperatura(°C)</label>
+                            <input onkeypress="return soloNumeros(event);" name="temp" maxlength="10" id="temp" type="text" autofocus class="form-control" value="<?php echo $atm->temp;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="peso" class="control-label">Peso(Kg)</label>
+                            <input onkeypress="return soloNumeros(event);" name="peso" maxlength="10" id="peso" type="text" autofocus class="form-control" value="<?php echo $atm->peso;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="pa" class="control-label">PA(mm/hg)</label>
+                            <input onkeypress="return soloNumeros(event);" name="pa" maxlength="10" id="pa" type="text" autofocus class="form-control" value="<?php echo $atm->pa;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-4 mb-3">
+                            <label for="pulso" class="control-label">Pulso(x')</label>
+                            <input onkeypress="return soloNumeros(event);" name="pulso" maxlength="10" id="pulso" type="text" autofocus class="form-control" value="<?php echo $atm->pulso;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>   
+                           <div class="col-md-4 mb-3">
+                            <label for="fr" class="control-label">FR(x')</label>
+                            <input onkeypress="return soloNumeros(event);" name="fr" maxlength="10" id="fr" type="text" autofocus class="form-control" value="<?php echo $atm->fr;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>                                                                                                                                                       
+                        </div>
+                      </div>                      
                     </div><!--/form step 2-->
                   </div> <!--/user profile content-->
                 </div><!--/atm-->
@@ -455,7 +601,14 @@ legend{
                 <div id="odontograma" class="">
                  <div class="user-profile-content">   
                     <div id="form-step-3" role="form" data-toggle="validator">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+                        <label for="nombre4" class="control-label"><strog class="theme_color">Nombre del Paciente</strog></label>
+                        <input name="nombre4" id="nombre4" type="text" class="form-control disabled"  value="<?php echo $paciente->nombre;?>" placeholder="PACIENTE QUE SE ESTA REGISTRANDO" required/>
+                      </div>      
+                    </div><br><br>  
                       <h3 class="h3titulo">Odontograma</h3>    
+                      <br><br>
 
                     </div><!--/form step 3-->
                   </div> <!--/user profile content-->
@@ -465,7 +618,14 @@ legend{
                 <div id="radiografia" class="">
                  <div class="user-profile-content">   
                     <div id="form-step-4" role="form" data-toggle="validator">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+                        <label for="nombre5" class="control-label"><strog class="theme_color">Nombre del Paciente</strog></label>
+                        <input name="nombre5" id="nombre5" type="text" class="form-control disabled"  value="<?php echo $paciente->nombre;?>" placeholder="PACIENTE QUE SE ESTA REGISTRANDO" required/>
+                      </div>      
+                    </div><br><br>  
                       <h3 class="h3titulo">Radiografias</h3>   
+                      <br><br>
 
                     </div><!--/form step 4-->
                   </div> <!--/user profile content-->
@@ -475,7 +635,14 @@ legend{
                 <div id="hisPag" class="">
                  <div class="user-profile-content">   
                     <div id="form-step-5" role="form" data-toggle="validator">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+                        <label for="nombre6" class="control-label"><strog class="theme_color">Nombre del Paciente</strog></label>
+                        <input name="nombre6" id="nombre6" type="text" class="form-control disabled"  value="<?php echo $paciente->nombre;?>"" placeholder="PACIENTE QUE SE ESTA REGISTRANDO" required/>
+                      </div>      
+                    </div><br><br>  
                       <h3 class="h3titulo">Historial de Pagos</h3>  
+                      <br><br>
 
                     </div><!--/form step 5-->
                   </div> <!--/user profile content-->
@@ -490,3 +657,35 @@ legend{
   </div><!--/row-->
 </div><!--/container clear_both padding_fix-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#').on('click', function(){ 
+      $('#smartwizard').smartWizard("reset");
+      $('#myForm').find("input, textarea").val("");
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+        $("#nombre").keyup(function () {
+            var value = $(this).val();
+            $("#nombre2").val(value);
+            $("#nombre3").val(value);
+            $("#nombre4").val(value);
+            $("#nombre5").val(value);
+            $("#nombre6").val(value);
+        });
+});
+</script>
+
+<!-- BOTONES 
+                      <div class="form-group">
+                        <div class="col-sm-offset-6 col-sm-6">
+                          <button type="submit" class="btn btn-success">Guardar</button>
+                          <a href="?c=paciente" class="btn btn-danger"> Cancelar</a>
+                          <a id="clear" class="btn btn-primary"> Limpiar</a>
+                          <a href="#" class="btn btn-default disabled">Anterior</a>
+                          <a href="#hisCli" class="btn btn-default">Siguiente</a>
+                        </div>
+                      </div>/form-group-->

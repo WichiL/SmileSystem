@@ -60,11 +60,12 @@
                         </div>
                     <?php }
                 } ?>
-                <div class="porlets-content">
+                <di class="porlets-content">
                     <div class="table-responsive">
                         <table class="display table table-bordered table-striped" id="dynamic-table">
                             <thead>
                             <tr>
+                                <th class="hidden">ID</th>
                                 <th>Folio</th>
                                 <th>Nombre</th>
                                 <th>Domicilio</th>
@@ -77,18 +78,31 @@
 
                             <?php foreach ($this->model->Listar() as $r): ?>
                                 <tr class="gradeA">
+                                    <td class="hidden"><?php echo $r->idPaciente; ?></td>
                                     <td><?php echo $r->folio; ?></td>
                                     <td><?php echo $r->nombre . " " . $r->apePat . " " . $r->apeMat; ?></td>
                                     <td><?php echo $r->calle . " " . $r->numero . " Col. " . $r->colonia; ?></td>
                                     <td><?php echo $r->telCasa; ?></td>
                                     <td><?php echo $r->telCel; ?></td>
                                     <td class="center">
-                                        <a class="btn btn-info btn-sm tooltips" role="button" href="?c=beneficiario&a=Detalles&idBeneficiario=<?php echo $r->idBeneficiario; ?>" data-toggle="tooltip" data-placement="left" data-original-title="Ver Expediente del Paciente"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-info btn-sm tooltips"
+                                            role="button" 
+                                            href="?c=paciente&a=Detalles&idPaciente=<?php echo $r->idPaciente; ?>"
+                                            data-toggle="tooltip"
+                                            data-placement="left" 
+                                            data-original-title="Ver Expediente del Paciente"><i class="fa fa-eye"></i>
+                                        </a>
                                       
-                                        <a class="btn btn-primary btn-sm tooltips" role="button" href="index.php?c=paciente&a=Crud&idPaciente=<?php echo $r->idPaciente ?>" data-toggle="tooltip" data-placement="left" data-original-title="Editar datos del Paciente"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-primary btn-sm tooltips" 
+                                            role="button" 
+                                            href="index.php?c=paciente&a=Crud&idPaciente=<?php echo $r->idPaciente ?>"
+                                            data-toggle="tooltip"
+                                            data-placement="left"
+                                            data-original-title="Editar datos del Paciente"><i class="fa fa-edit"></i>
+                                        </a>
                                       
                                         <a class="btn btn-danger btn-sm tooltips" role="button" onclick="eliminarPaciente(<?php echo $r->folio; ?>);"
-                                            data-toggle="tooltip" data-placement="left" data-original-title="Eliminar Paciente" href="#modalEliminar" data-toggle="modal"
+                                            data-toggle="modal" data-placement="left" data-original-title="Eliminar Paciente" href="#modalEliminar" data-toggle="modal"
                                            data-target="#modalEliminar"><i class="fa fa-eraser"></i></a>
                                     </td>
                                 </tr>
@@ -96,6 +110,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th class="hidden">ID</th>
                                 <th>Folio</th>
                                 <th>Nombre</th>
                                 <th>Domicilio</th>
@@ -105,10 +120,8 @@
                             </tr>
                             </tfoot>
                         </table>
-                                                <div class="hidden"><?php echo $r->idPaciente; ?></div> <!--HECHIZO-->
-
                     </div><!--/table-responsive-->
-                </div><!--/porlets-content-->
+                </di><!--/porlets-content-->
             </div><!--/block-web-->
         </div><!--/col-md-12-->
     </div><!--/row-->
@@ -129,14 +142,14 @@
                                 <div class="form-group">
                                     <div class="col-md-2"></div>
                                     <div class="col-sm-8">
-                                        <input autofocus name="nombre" maxlength="60" id="nombre" type="text" required
-                                               parsley-regexp="" required class="form-control" required
+                                        <input autofocus name="nombre" maxlength="60" id="nombre" type="text"
+                                               required class="form-control" 
                                                placeholder="Ingrese el nombre del paciente">
-                                        <input name="apePat" maxlength="60" id="apePat" type="text" required
-                                               parsley-regexp="" required class="form-control" required
+                                        <input name="apePat" maxlength="60" id="apePat" type="text" 
+                                               required class="form-control"
                                                placeholder="Ingrese Apellido Paterno">
-                                        <input name="apeMat" maxlength="60" id="apeMat" type="text" required
-                                               parsley-regexp="" required class="form-control" required
+                                        <input name="apeMat" maxlength="60" id="apeMat" type="text" 
+                                               class="form-control" 
                                                placeholder="Ingrese Apellido Materno">       
                                     </div>
                                 </div><!--/form-group-->

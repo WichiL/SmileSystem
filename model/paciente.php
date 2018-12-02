@@ -42,7 +42,6 @@ class Paciente
 	public function ListarInfoPaciente($id)
 	{
 		$stm = $this->pdo->prepare("SELECT * FROM pacientes where idPaciente = ?");
-
 		$stm->execute(array($id));
 		return $stm->fetch(PDO::FETCH_OBJ);
 	}
@@ -58,7 +57,6 @@ class Paciente
 	
 	public function Actualizar(Paciente $data)
 	{
-		
 		$sql = "UPDATE pacientes SET 
 		idPaciente = ?,
 		folio = ?,
