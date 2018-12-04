@@ -67,29 +67,27 @@
                                     <th>Nombre</th>
                                     <th>Folio</th>
                                     <th>Diagnostico</th>
-                                    <th><center><b>Hora de cita</b></center></th>
+                                    <th><b>Hora de cita</b></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="grade">
-                                    <td>Francisco Javier Ibanez Canales</td>
-                                    <td>292839</td>
-                                    <td>Caries en la muela izquierda</td>
-                                    <td>10:00am</td>
-                                </tr>
-                                <tr class="grade">
-                                    <td>Lidia Canales Gamon</td>
-                                    <td>123451</td>
-                                    <td>Retirar Muelas del juicio</td>
-                                    <td>11:00am</td>
-                                </tr>
-                                <tr class="grade">
-                                      <td>Jorge Luis Ibanez Rodriguez</td>
-                                      <td>984854</td>
-                                      <td>Caries en la muela izquierda</td>
-                                      <td>3:00pm</td>
-                                </tr>
+                               <?php foreach($this->model->ListarCitas() as $r): ?>
+                                    <tr class="grade">
+                                        <td><?php echo $r->nombre ?> </td>
+                                        <td><?php echo $r->folio ?> </td>
+                                        <td><?php echo $r->diagnostico ?> </td>
+                                        <td><?php echo $r->hora ?> </td>                                        
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
+                            <tfoot>
+                              <tr>
+                                <th>Nombre</th>
+                                <th>Folio</th>
+                                <th>Diagnostico</th>
+                                <th>Hora de Cita</th>
+                              </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ class PacienteController{
   public function __CONSTRUCT(){
     $this->model = new Paciente();
     $this->model1 = new HistorialClinico();
-    $this->model2 = new ATM();
+    $this->model2 = new Atm();
   }
 
   public function Index(){
@@ -39,7 +39,7 @@ class PacienteController{
     try {
       $paciente = new paciente();
       $histCli = new HistorialClinico();
-      $atm = new ATM();
+      $atm = new Atm();
       if(isset($_REQUEST['nombre'])){
         $paciente->nombre=$_REQUEST['nombre'];
         $paciente->apePat=$_REQUEST['apePat'];
@@ -55,8 +55,8 @@ class PacienteController{
           $pacientes = false;
           //AGREGAR OBJETOS PARA EDITAR DESDE EXPEDIENTE
           $pac = $this->model->Obtener($verificaPac->idPaciente);
-          //$histCli = $this->model1->ObtenerHisCliPaciente($verificaPac->idPaciente);
-          //$atm = $this->model2->ObtenerATMPaciente($verificaPac->idPaciente);
+          $histCli = $this->model1->ObtenerHisCliPaciente($verificaPac->idPaciente);
+          $atm = $this->model2->ObtenerATMPaciente($verificaPac->idPaciente);
           $page="view/paciente/expediente.php";
           require_once 'view/index.php';
         }
@@ -65,7 +65,7 @@ class PacienteController{
         //AGREGAR OBJETOS PARA EDITAR CUANDO ES DIRECTO        
         $paciente = $this->model->Obtener($_REQUEST['idPaciente']);
         $histCli = $this->model1->ObtenerHisCliPaciente($_REQUEST['idPaciente']);
-        //$atm = $this->model2->ObtenerATMPaciente($_REQUEST['idPaciente']);
+        $atm = $this->model2->ObtenerATMPaciente($_REQUEST['idPaciente']);
         $page="view/paciente/paciente.php";
         require_once 'view/index.php';
       }
@@ -178,8 +178,9 @@ class PacienteController{
       $histCli->prg4 = $_REQUEST['prg4'];
 
       //ATM
-      $atm = new ATM();
+      $atm = new Atm();
       $atm->idAtm = $_REQUEST['idAtm'];
+      $atm->idPaciente = $_REQUEST['idPaciente'];
       $atm->linMedia = $_REQUEST['linMedia'];
       $atm->habitos = $_REQUEST['habitos'];
       $atm->bruxismo = $_REQUEST['bruxismo'];
@@ -201,24 +202,23 @@ class PacienteController{
       $atm->pa = $_REQUEST['pa'];
       $atm->pulso = $_REQUEST['pulso'];
       $atm->fr = $_REQUEST['fr'];
-
       $verificaPac=$this->model->verificaPaciente($paciente->nombre, $paciente->apePat, $paciente->apeMat);
+
       if($paciente->idPaciente > 0 || $verificaPac!=null){
         //AGREGAR MODELOS PARA ACTUALIZAR PACIENTES
         $this->model->Actualizar($paciente);
         $this->model1->ActualizarHisCli($histCli);;
-
-        //$this->model2->ActualizarATM($atm);
+        $this->model2->ActualizarATM($atm);
         $this->mensaje="Se ha actualizado correctamente el paciente";
       }else{
         //AGREGAR MODELOS PARA REGISTRAR PACIENTES
         $this->model->Registrar($paciente);
+         //COMO ES EL PRIMER REGISTRO DEBEMOS TRAER EL ID PARA PASARLO A LAS DEMAS TABLAS
         $verificaPac=$this->model->verificaPaciente($paciente->nombre, $paciente->apePat, $paciente->apeMat);
+        $histCli->idPaciente = $verificaPac->idPaciente; 
+        $atm->idPaciente = $verificaPac->idPaciente;
         $this->model1->RegistrarHisCli($histCli);
-        //$atm->idPaciente = $verificaPac->idPaciente;  
-        //x$histCli->idPaciente = $verificaPac->idPaciente; 
-
-        //$this->model2->RegistrarATM($atm);
+        $this->model2->RegistrarATM($atm);
         $this->mensaje="Se ha registrado correctamente el paciente";
       }
       $this->Index();
@@ -230,16 +230,18 @@ class PacienteController{
   }
 
   public function Detalles(){
-  try {
-   $pacientes=true;
-   $paciente = new Paciente();
-   $pac = $this->model->Obtener($_REQUEST['idPaciente']);
-   $page="view/paciente/expediente.php";
-   require_once 'view/index.php';
- } catch (Exception $e) {
-    $this->error=true;
-    $this->mensaje="Ha ocurrido un error al recuperar la información del paciente";
-    $this->Index();
- }
-}
+    try {
+      $pacientes=true;
+      $paciente = new Paciente();
+      $pac = $this->model->Obtener($_REQUEST['idPaciente']);
+      $histCli = $this->model1->ObtenerHisCliPaciente($_REQUEST['idPaciente']);
+      $atm = $this->model2->ObtenerATMPaciente($_REQUEST['idPaciente']);
+      $page="view/paciente/expediente.php";
+      require_once 'view/index.php';
+    }catch (Exception $e) {
+      $this->error=true;
+      $this->mensaje="Ha ocurrido un error al recuperar la información del paciente";
+      $this->Index();
+    }
+  }
 }

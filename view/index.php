@@ -483,7 +483,7 @@ if(isset($_SESSION['tiempo'])) {
       toolbarSettings: {toolbarPosition: 'both',
       lang: {  // Language variables
       next: 'Siguiente', 
-      previous: 'Anterior'
+      previous: 'Atras'
     },
     toolbarExtraButtons: [
       $('<button></button>').text('Guardar')

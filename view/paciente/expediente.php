@@ -59,6 +59,7 @@ SmileSystem | Expediente de Paciente'; ?>
   </div>
   <?php } }?>
 
+<div class="col-md-12">
   <div class="row">
     <div class="container header padding_fix">
       <h2 class="content-header h3subtitulo theme_color" style="color:#4FC338;margin-top: -10px;">GENERALES</h2>
@@ -234,5 +235,76 @@ SmileSystem | Expediente de Paciente'; ?>
       </div><!--/block-web-->
     </div><!--/DOMICILIO-->
   </div><!--/row-->
+</div>
+
+
+  <div class="row">
+    <div class="col-md-6"><!--EXAMEN DE TEJIDOS-->
+      <div class="block-web">
+        <div class="header">
+          <h3 class="content-header h3subtitulo">Domicilio</h3>
+        </div>
+        <div class="porlets-content">
+          <div class="panel-body">
+            <div class="col-md-12">
+              <table class="table table-striped">
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"><!--EXAMEN DE TEJIDOS-->
+      <div class="block-web">
+        <div class="header">
+          <h3 class="content-header h3subtitulo">Domicilio</h3>
+        </div>
+        <div class="porlets-content">
+          <div class="panel-body">
+            <div class="col-md-12">
+              <table class="table table-striped">
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6"><!--EXAMEN DE TEJIDOS-->
+      <div class="block-web">
+        <div class="header">
+          <h3 class="content-header h3subtitulo">Domicilio</h3>
+        </div>
+        <div class="porlets-content">
+          <div class="panel-body">
+            <div class="col-md-12">
+              <table class="table table-striped">
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"><!--EXAMEN DE TEJIDOS-->
+      <div class="block-web">
+        <div class="header">
+          <h3 class="content-header h3subtitulo">Domicilio</h3>
+        </div>
+        <div class="porlets-content">
+          <div class="panel-body">
+            <div class="col-md-12">
+              <table class="table table-striped">
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div><!--/container clear_both padding_fix-->
 <script src="assets/js/jquery-2.1.0.js"></script>

@@ -32,6 +32,9 @@ strong{
     padding-right: 25px;
     padding-top: 12px;
 }
+input[type=checkbox] {
+  transform: scale(2);
+}
 legend{
     font-size: 18px;
 }
@@ -209,13 +212,13 @@ legend{
                           <br>
                           <div class="col-md-2 mb-2">
                             <label for="telCasa" class="control-label">Tel. de Casa<strog class="theme_color">*</strog></label>
-                            <input onkeypress="return soloNumeros(event);" type="text" placeholder="(999)999-999" name="telCasa" id="telCasa" value="<?php echo $paciente->telCasa;?>" class="form-control mask" data-inputmask="'mask':'(999) 999-9999'" required>
+                            <input parsley-rangelength="[1,14]" onkeypress="return soloNumeros(event);" type="text" placeholder="(999)999-999" name="telCasa" id="telCasa" value="<?php echo $paciente->telCasa;?>" class="form-control mask" data-inputmask="'mask':'(999) 999-9999'" required>
                             <div class="help-block with-errors"></div>
                           </div>
 
                           <div class="col-md-2 mb-2">
                             <label for="telCel" class="control-label">Tel. Celular</label>
-                            <input onkeypress="return soloNumeros(event);" type="text" placeholder="(999)999-999" name="telCel" id="telCel" value="<?php echo $paciente->telCel;?>" class="form-control mask" data-inputmask="'mask':'(999) 999-9999'">
+                            <input parsley-rangelength="[1,14]" onkeypress="return soloNumeros(event);" type="text" placeholder="(999)999-999" name="telCel" id="telCel" value="<?php echo $paciente->telCel;?>" class="form-control mask" data-inputmask="'mask':'(999) 999-9999'">
                             <div class="help-block with-errors"></div>
                           </div>
 
@@ -293,7 +296,7 @@ legend{
                             <div class="row">
                               <div class="col-md-6 f">
                                 <p><strong>Duros</strong></p>
-                                <p><input name="esmalte" type="checkbox" <?php if($histCli->esmalte=="1"){ ?> checked <?php } ?>>Esmalte</p>
+                                <p><input name="esmalte" type="checkbox" <?php if($histCli->esmalte=="1" ){ ?> checked <?php } ?>>Esmalte</p>
                                 <p><input name="dentina" type="checkbox" <?php if($histCli->dentina=="1"){ ?> checked <?php } ?>>Dentina</p>
                               </div>
     
@@ -373,7 +376,7 @@ legend{
                                   <p><input name="tiroides" type="checkbox" <?php if($histCli->tiroides=="1"){ ?> checked <?php } ?>>Tiroides</p>
                                   <p><input name="hipotiroidismo" type="checkbox" <?php if($histCli->hipotiroidismo=="1"){ ?> checked <?php } ?>>Hipotiroidismo</p>
                                   <p><input name="proCoagulacion" type="checkbox" <?php if($histCli->proCoagulacion=="1"){ ?> checked <?php } ?>>Problemas de Coagulación</p>
-                                  <p><input name="alergias" type="checkbox" <?php if($histCli->alergias=="1"){ ?> checked <?php } ?>>Alergias <input name="descAlergias" value="<?php echo $histCli->descAlergias;?>" type="text" class="form-control" placeholder="¿Cuales...?" style="width: 80px;"></p><br><br>
+                                  <p><input name="alergias" id="alergias" type="checkbox" <?php if($histCli->alergias=="1"){ ?> checked <?php } ?>>Alergias <input name="descAlergias" id="descAlergias" value="<?php echo $histCli->descAlergias;?>" type="text" class="form-control" placeholder="¿Cuales...?" style="width: 80px;"></p><br><br>
                                 </div>
                               </fieldset>
                             </div>
@@ -399,7 +402,7 @@ legend{
                             <div class="row">
                               <div class="col-md-6 f">
                                 <p><input name="emergencia" type="checkbox" <?php if($histCli->emergencia=="1"){ ?> checked <?php } ?>>Emergencia</p>
-                                <p><input name="revisión" type="checkbox" <?php if($histCli->revision=="1"){ ?> checked <?php } ?>>Revisión</p>
+                                <p><input name="revision" type="checkbox" <?php if($histCli->revision=="1"){ ?> checked <?php } ?>>Revisión</p>
                                 <p><input name="limpieza" type="checkbox" <?php if($histCli->limpieza=="1"){ ?> checked <?php } ?>>Limpieza</p>
                                 <p><input name="canes" type="checkbox" <?php if($histCli->canes=="1"){ ?> checked <?php } ?>>Caries</p>
                               </div>
@@ -419,8 +422,8 @@ legend{
                                 <p><input name="apDigestivo" type="checkbox" <?php if($histCli->apDigestivo=="1"){ ?> checked <?php } ?>>Aparato Digestivo</p>
                                 <p><input name="sisNervioso" type="checkbox" <?php if($histCli->sisNervioso=="1"){ ?> checked <?php } ?>>Sistema Nervioso</p>
                                 <p><input name="apUrinario" type="checkbox" <?php if($histCli->apUrinario=="1"){ ?> checked <?php } ?>>Aparato Genito-Urinario</p>
-                                <p><input name="cicMestrual" type="checkbox" <?php if($histCli->cicMestrual=="1"){ ?> checked <?php } ?>>Ciclo Menstrual <input name="infCicMes" value="<?php echo $histCli->infCicMes;?>" type="text" class="form-control" placeholder="..." style="width: 80px;"></p> 
-                                <p><input name="embarazo" type="checkbox" <?php if($histCli->embarazo=="1"){ ?> checked <?php } ?>>Embarazo <input name="meses" value="<?php echo $histCli->meses;?>" type="text" class="form-control" placeholder="Meses" style="width: 80px;"></p>                                                   
+                                <p><input name="cicMestrual"id="cicMestrual" type="checkbox" <?php if($histCli->cicMestrual=="1"){ ?> checked <?php } ?>>Ciclo Menstrual <input name="infCicMes" id="infCicMes" value="<?php echo $histCli->infCicMes;?>" type="text" class="form-control" placeholder="..." style="width: 80px;"></p> 
+                                <p><input name="embarazo" id="embarazo" type="checkbox" <?php if($histCli->embarazo=="1"){ ?> checked <?php } ?>>Embarazo <input name="meses" id="meses" value="<?php echo $histCli->meses;?>" type="text" class="form-control" placeholder="Meses" style="width: 80px;"></p>                                                   
                               </div>
                             </div>
                           </fieldset>
@@ -466,7 +469,7 @@ legend{
                           <p class="center">
                             ¿Ha sido sometido a algun procedimiento quirúrgico <br> en alguna época de su vida?
                              <div class="radio">
-                              <strong class=""> <input class="input d" type="radio" name="prg4"  value="1" <?php if($histCli->prg4=="1"){ ?> checked <?php } ?>>Si </strong>
+                              <strong class=""> <input class="input d" type="radio" name="prg4" value="1" <?php if($histCli->prg4=="1"){ ?> checked <?php } ?>>Si </strong>
                             </div>
                             <div class="radio">
                               <label>
@@ -494,105 +497,107 @@ legend{
                       </div>      
                     </div><br><br>                        
                       <h3 class="h3titulo">ATM</h3>                 
-                      <br><br>
-                      <div class="col-md-6">                    
+                      <br>
+
+                      <div class="col-md-6">
+                        <fieldset> 
                         <div class="form-row">
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-6 mb-4">
                             <label for="linMedia" class="control-label">Linea Media</label>
                             <input name="linMedia" maxlength="60" id="linMedia" type="text" autofocus class="form-control" value="<?php echo $atm->linMedia;?>" />
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-6 mb-4">
                             <label for="habitos" class="control-label">Habitos</label>
                             <input name="habitos" maxlength="60" id="habitos" type="text" autofocus class="form-control" value="<?php echo $atm->habitos;?>" />
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-6 mb-4">
                             <label for="bruxismo" class="control-label">Bruxismo</label>
                             <input name="bruxismo" maxlength="60" id="bruxismo" type="text" autofocus class="form-control" value="<?php echo $atm->bruxismo;?>" />
                           </div>
-                           <div class="col-md-4 mb-3">
+                           <div class="col-md-6 mb-4">
+                            <label for="crepitacion" class="control-label">Crepitación</label>
+                            <input name="crepitacion" maxlength="60" id="crepitacion" type="text" autofocus class="form-control" value="<?php echo $atm->crepitacion;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                           <div class="col-md-6 mb-4">
+                            <label for="infDolor" class="control-label">Dolor</label>
+                            <p><input name="dolDerecha" id="dolDerecha" type="checkbox" <?php if($atm->dolDerecha=="1"){ ?> checked <?php } ?>>Abrir</p>
+                            <p><input name="dolIzquierda" id="dolIzquierda" type="checkbox" <?php if($atm->dolIzquierda=="1"){ ?> checked <?php } ?>>Cerrar</p>
+                            <input name="infDolor" maxlength="60" id="infDolor" type="text" autofocus class="form-control" value="<?php echo $atm->infDolor;?>" />
+                            <div class="help-block with-errors"></div>
+                          </div>
+                          <div class="col-md-6 mb-4">
                             <label for="infChasquido" class="control-label">Chasquidos</label>
                             <p><input name="chaArriba" type="checkbox" <?php if($atm->chaArriba=="1"){ ?> checked <?php } ?>>Derecho</p>
                             <p><input name="chaAbajo" type="checkbox" <?php if($atm->chaAbajo=="1"){ ?> checked <?php } ?>>Izquierdo</p>
                             <input name="infChasquido" maxlength="60" id="infChasquido" type="text" autofocus class="form-control" value="<?php echo $atm->infChasquido;?>" />
                           </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="crepitacion" class="control-label">Crepitación</label>
-                            <input name="crepitacion" maxlength="60" id="crepitacion" type="text" autofocus class="form-control" value="<?php echo $atm->crepitacion;?>" />
-                            <div class="help-block with-errors"></div>
+                        
                           </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="infDolor" class="control-label">Dolor</label>
-                            <p><input name="dolDerecha" type="checkbox" <?php if($atm->dolDerecha=="1"){ ?> checked <?php } ?>>Abrir</p>
-                            <p><input name="dolIzquierda" type="checkbox" <?php if($atm->dolIzquierda=="1"){ ?> checked <?php } ?>>Cerrar</p>
-                            <input name="infDolor" maxlength="60" id="infDolor" type="text" autofocus class="form-control" value="<?php echo $atm->infDolor;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
+                        </fieldset>
                       </div>
-                      <div class="col-md-6">                    
-                        <div class="form-row">
-                          <div class="col-md-4 mb-3">
-                            <label for="maxAbertura" class="control-label">Max. Abertura(mm)</label>
-                            <input onkeypress="return soloNumeros(event);" name="maxAbertura" maxlength="10" id="maxAbertura" type="text" autofocus class="form-control" value="<?php echo $atm->maxAbertura;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="izquierdo" class="control-label">Izquierdo(mm)</label>
-                            <input onkeypress="return soloNumeros(event);" name="izquierdo" maxlength="10" id="izquierdo" type="text" autofocus class="form-control" value="<?php echo $atm->izquierdo;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="derecho" class="control-label">Derecho(mm)</label>
-                            <input onkeypress="return soloNumeros(event);" name="derecho" maxlength="10" id="derecho" type="text" autofocus class="form-control" value="<?php echo $atm->derecho;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="potrusion" class="control-label">Potrusión(mm)</label>
-                            <input onkeypress="return soloNumeros(event);" name="potrusion" maxlength="10" id="potrusion" type="text" autofocus class="form-control" value="<?php echo $atm->potrusion;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="regresion" class="control-label">Regresión(mm)</label>
-                            <input onkeypress="return soloNumeros(event);" name="regresion" maxlength="10" id="regresion" type="text" autofocus class="form-control" value="<?php echo $atm->regresion;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="peso" class="control-label">Peso(Kg)</label>
-                            <input onkeypress="return soloNumeros(event);" name="peso" maxlength="10" id="peso" type="text" autofocus class="form-control" value="<?php echo $atm->peso;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="talla" class="control-label">Talla(Mts)</label>
-                            <input onkeypress="return soloNumeros(event);" name="talla" maxlength="10" id="talla" type="text" autofocus class="form-control" value="<?php echo $atm->talla;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="temp" class="control-label">Temperatura(°C)</label>
-                            <input onkeypress="return soloNumeros(event);" name="temp" maxlength="10" id="temp" type="text" autofocus class="form-control" value="<?php echo $atm->temp;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="peso" class="control-label">Peso(Kg)</label>
-                            <input onkeypress="return soloNumeros(event);" name="peso" maxlength="10" id="peso" type="text" autofocus class="form-control" value="<?php echo $atm->peso;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="pa" class="control-label">PA(mm/hg)</label>
-                            <input onkeypress="return soloNumeros(event);" name="pa" maxlength="10" id="pa" type="text" autofocus class="form-control" value="<?php echo $atm->pa;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>
-                           <div class="col-md-4 mb-3">
-                            <label for="pulso" class="control-label">Pulso(x')</label>
-                            <input onkeypress="return soloNumeros(event);" name="pulso" maxlength="10" id="pulso" type="text" autofocus class="form-control" value="<?php echo $atm->pulso;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>   
-                           <div class="col-md-4 mb-3">
-                            <label for="fr" class="control-label">FR(x')</label>
-                            <input onkeypress="return soloNumeros(event);" name="fr" maxlength="10" id="fr" type="text" autofocus class="form-control" value="<?php echo $atm->fr;?>" />
-                            <div class="help-block with-errors"></div>
-                          </div>                                                                                                                                                       
-                        </div>
-                      </div>                      
+
+                      <div class="col-md-6">
+                        <fieldset>
+                            <div class="form-row">
+                              <div class="col-md-4 mb-3">
+                                <label for="maxAbertura" class="control-label">Max. Abertura(mm)</label>
+                                <input onkeypress="return soloNumeros(event);" name="maxAbertura" maxlength="10" id="maxAbertura" type="text" autofocus class="form-control" value="<?php echo $atm->maxAbertura;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label for="izquierdo" class="control-label">Izquierdo(mm)</label>
+                                <input onkeypress="return soloNumeros(event);" name="izquierdo" maxlength="10" id="izquierdo" type="text" autofocus class="form-control" value="<?php echo $atm->izquierdo;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label for="derecho" class="control-label">Derecho(mm)</label>
+                                <input onkeypress="return soloNumeros(event);" name="derecho" maxlength="10" id="derecho" type="text" autofocus class="form-control" value="<?php echo $atm->derecho;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                               <div class="col-md-4 mb-3">
+                                <label for="potrusion" class="control-label">Potrusión(mm)</label>
+                                <input onkeypress="return soloNumeros(event);" name="potrusion" maxlength="10" id="potrusion" type="text" autofocus class="form-control" value="<?php echo $atm->potrusion;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                               <div class="col-md-4 mb-3">
+                                <label for="regresion" class="control-label">Regresión(mm)</label>
+                                <input onkeypress="return soloNumeros(event);" name="regresion" maxlength="10" id="regresion" type="text" autofocus class="form-control" value="<?php echo $atm->regresion;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                               <div class="col-md-4 mb-3">
+                                <label for="peso" class="control-label">Peso(Kg)</label>
+                                <input onkeypress="return soloNumeros(event);" name="peso" maxlength="10" id="peso" type="text" autofocus class="form-control" value="<?php echo $atm->peso;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label for="talla" class="control-label">Talla(Mts)</label>
+                                <input onkeypress="return soloNumeros(event);" name="talla" maxlength="10" id="talla" type="text" autofocus class="form-control" value="<?php echo $atm->talla;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label for="temp" class="control-label">Temperatura(°C)</label>
+                                <input onkeypress="return soloNumeros(event);" name="temp" maxlength="10" id="temp" type="text" autofocus class="form-control" value="<?php echo $atm->temp;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                               <div class="col-md-4 mb-3">
+                                <label for="pa" class="control-label">PA(mm/hg)</label>
+                                <input onkeypress="return soloNumeros(event);" name="pa" maxlength="10" id="pa" type="text" autofocus class="form-control" value="<?php echo $atm->pa;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>
+                               <div class="col-md-4 mb-3">
+                                <label for="pulso" class="control-label">Pulso(x')</label>
+                                <input onkeypress="return soloNumeros(event);" name="pulso" maxlength="10" id="pulso" type="text" autofocus class="form-control" value="<?php echo $atm->pulso;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>   
+                               <div class="col-md-4 mb-3">
+                                <label for="fr" class="control-label">FR(x')</label>
+                                <input onkeypress="return soloNumeros(event);" name="fr" maxlength="10" id="fr" type="text" autofocus class="form-control" value="<?php echo $atm->fr;?>" />
+                                <div class="help-block with-errors"></div>
+                              </div>                                                                                                                     
+                            </div>    
+                        </fieldset>
+                      </div>
                     </div><!--/form step 2-->
                   </div> <!--/user profile content-->
                 </div><!--/atm-->
@@ -678,6 +683,31 @@ legend{
         });
 });
 </script>
+
+<!-- <script type="text/javascript">
+  document.getElementById("embarazo").onclick = function(){
+          if (document.getElementById("meses").disabled){
+            document.getElementById("meses").disabled = false
+          }else{
+            document.getElementById("meses").disabled = true
+          }
+        }
+    document.getElementById("alergias").onclick = function(){
+          if (document.getElementById("descAlergias").disabled){
+            document.getElementById("descAlergias").disabled = false
+          }else{
+            document.getElementById("descAlergias").disabled = true
+          }
+        }
+    document.getElementById("cicMestrual").onclick = function(){
+          if (document.getElementById("infCicMes").disabled){
+            document.getElementById("infCicMes").disabled = false
+          }else{
+            document.getElementById("infCicMes").disabled = true
+          }
+        }
+</script> -->
+
 
 <!-- BOTONES 
                       <div class="form-group">

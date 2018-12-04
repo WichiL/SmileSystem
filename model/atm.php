@@ -1,7 +1,6 @@
 <?php
-class ATM
+class Atm
 {
-	private $pdo; 
 	public $idAtm;
 	public $idPaciente;
 	public $linMedia;
@@ -26,96 +25,112 @@ class ATM
 	public $pulso;
 	public $fr;
 
+
 	public function __CONSTRUCT()
 	{
 		$this->pdo = Database::StartUp();
 	}
 
-		public function ObtenerATMPaciente($id)
+	public function ObtenerATMPaciente($id)
 	{
 		$stm = $this->pdo->prepare("SELECT * FROM atm where idPaciente = ?");
 		$stm->execute(array($id));
 		return $stm->fetch(PDO::FETCH_OBJ);
 	}
 
-	public function EliminarATM($id)
-	{
-		$stm = $this->pdo
-		->prepare("DELETE FROM atm WHERE idPaciente = ?");			          
-
-		$stm->execute(array($id));
-	}
-	
-	public function ActualizarATM(ATM $data)
-	{
-		$sql = "UPDATE atm SET 
-			$idAtm,
-			$idPaciente,
-			$linMedia,
-			$habitos,
-			$bruxismo,
-			$chasArriba,
-			$chasAbajo,
-			$infChasquido,
-			$crepitacion,
-			$dolDerecha,
-			$dolIzquierda,
-			$infDolor,
-			$maxAbertura,
-			$derecho,
-			$izquierdo,
-	     	$potrusion,
-			$regresion,
-			$peso,
-			$talla,
-			$temp,
-			$pa,
-			$pulso,
-			$fr
-		WHERE idPaciente = ?";
-
-		$this->pdo->prepare($sql)
-		->execute(
-			array(
-				
-				)
-			);
-	}
-
-	public function RegistrarATM(ATM $data)
+	public function RegistrarATM(Atm $data)
 	{
 		$sql = "INSERT INTO atm
 		VALUES (?,?,?,?,?,
 				?,?,?,?,?,
 				?,?,?,?,?,
-				?,?,?,?,?,?,?)";
-				
+				?,?,?,?,?,?,?,?)";
+
 		$this->pdo->prepare($sql)
 		->execute(
 			array(
 				null,
-				$data->$idPaciente,
-				$data->$linMedia,
-				$data->$habitos,
-				$data->$bruxismo,
-				$data->$chasArriba,
-				$data->$chasAbajo,
-				$data->$infChasquido,
-				$data->$crepitacion,
-				$data->$dolDerecha,
-				$data->$dolIzquierda,
-				$data->$infDolor,
-				$data->$maxAbertura,
-				$data->$derecho,
+				$data->idPaciente,
+				$data->linMedia, 
+				$data->habitos,
+				$data->bruxismo,
+				$data->chaArriba, 
+				$data->chaAbajo,
+				$data->infChasquido,
+				$data->crepitacion,
+				$data->dolDerecha,
+				$data->dolIzquierda,
+				$data->infDolor, 
+				$data->maxAbertura, 
+				$data->derecho, 
 				$data->izquierdo,
-				$data->$potrusion,
-				$data->$regresion,
-				$data->$peso,
-				$data->$talla,
-				$data->$temp,
-				$data->$pa,
-				$data->$pulso,
-				$data->$fr,
+				$data->potrusion,
+				$data->regresion,
+				$data->peso,
+				$data->talla,
+				$data->temp,
+				$data->pa,
+				$data->pulso,
+				$data->fr
+				)
+			);
+	}
+
+	public function ActualizarATM(Atm $data)
+	{
+		$sql = "UPDATE atm SET 
+		idAtm = ?,
+		idPaciente = ?,
+		linMedia = ?,
+		habitos = ?,
+		bruxismo = ?,
+		chaArriba = ?,
+		chaAbajo = ?,
+		infChasquido = ?, 
+		crepitacion = ?, 
+		dolDerecha = ?, 
+		dolIzquierda = ?, 
+		infDolor = ?, 
+		maxAbertura = ?, 
+		derecho = ?, 
+		izquierdo = ?, 
+		potrusion = ?, 
+		regresion = ?, 
+		peso = ?, 
+		talla = ?, 
+		temp = ?, 
+		pa = ?, 
+		pulso = ?, 
+		fr = ?  
+		WHERE idPaciente = ?";
+
+		$this->pdo->prepare($sql)
+		->execute(
+			array(
+				$data->idAtm,
+				$data->idPaciente,
+				$data->linMedia, 
+				$data->habitos,
+				$data->bruxismo,
+				$data->chaArriba, 
+				$data->chaAbajo,
+				$data->infChasquido,
+				$data->crepitacion,
+				$data->dolDerecha,
+				$data->dolIzquierda,
+				$data->infDolor, 
+				$data->maxAbertura, 
+				$data->derecho, 
+				$data->izquierdo,
+				$data->potrusion,
+				$data->regresion,
+				$data->peso,
+				$data->talla,
+				$data->temp,
+				$data->pa,
+				$data->pulso,
+				$data->fr,
+				$data->idPaciente
 				)
 			);
 	}
